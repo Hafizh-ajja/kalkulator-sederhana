@@ -45,7 +45,6 @@ function Calculator() {
     setOp(op);
   }
 
-  // eslint-disable-next-line no-unused-vars
   function handleEqual() {
     if (op === "+") {
       setCurval(prev => parseFloat(prev) + parseFloat(curval));
@@ -65,10 +64,21 @@ function Calculator() {
       setOp("");
     }
   }
+
+  function handleDisplay() {
+    if (curval.length === 0) {
+      return "0";
+    }else if (curval === ".") {
+      return "0.";
+    } else {
+      return parseFloat(curval).toLocaleString();
+    }
+  }
+
   return (
     <div className="bg-white p-5 rounded-2xl">
       <div className="text-6xl text-right bg-gray-100 p-3 rounded-xl md-6">
-        {curval}
+        {handleDisplay()}
       </div>
 
       <div className='grid grid-cols-4 gap-4'>
